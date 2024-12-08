@@ -90,23 +90,43 @@ public class MainGUI extends JFrame {
 		getContentPane().add(btnDiet);
 
 	}
-	
+	// Switch to Ideal Weight Calculator GUI
 	public void click_IdealWeight() {
-		
+		WeightCalculatorGUI wGUI = new WeightCalculatorGUI();
+		wGUI.setTitle("Ideal Weight Calculator");
+		wGUI.setBounds(400, 400, 500, 500);
+		wGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		wGUI.setVisible(true);
+		this.setVisible(false);
 	}
-	
+	// Switch to BMR Calculator GUI
 	public void click_BMR() {
-			
+		BMRGUI bGUI = new BMRGUI();
+		bGUI.setTitle("Basal Metabolic Rate Calculator");
+		bGUI.setBounds(400, 400, 500, 500);
+		bGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		bGUI.setVisible(true);
+		this.setVisible(false);
 	}
-	
+	// Switch to Calorie Intake GUI
 	public void click_CalorieIntake() {
-		
+		CalorieIntakeGUI cGUI = new CalorieIntakeGUI();
+		cGUI.setTitle("Calorie Intake Calculator");
+		cGUI.setBounds(400, 400, 500, 500);
+		cGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		cGUI.setVisible(true);
+		this.setVisible(false);
 	}
-	
+	// Switch to Weight Record GUI
 	public void click_WeightRecord() {
-		
+		WeightRecordGUI rGUI = new WeightRecordGUI();
+		rGUI.setTitle("Weight Record");
+		rGUI.setBounds(400, 400, 500, 500);
+		rGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		rGUI.setVisible(true);
+		this.setVisible(false);
 	}
-	
+	// Switch to Diet Planner GUI
 	public void click_Diet() {
 		
 	}
