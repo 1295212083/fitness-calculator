@@ -37,7 +37,9 @@ public class MainGUI extends JFrame {
 		// Func1: Ideal Weight Calculator
 		btnIdealWeight = new JButton("Ideal Weight Calculator");
 		btnIdealWeight.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
+				click_IdealWeight();
 			}
 		});
 		btnIdealWeight.setBounds(135, 65, 200, 50);
@@ -46,7 +48,9 @@ public class MainGUI extends JFrame {
 		// Func2: Daily Basal Metabolic Rate (BMR) Calculator
 		btnBMR = new JButton("BMR Caculator");
 		btnBMR.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
+				click_BMR();
 			}
 		});
 		btnBMR.setBounds(135, 130, 200, 50);
@@ -55,7 +59,9 @@ public class MainGUI extends JFrame {
 		// Func3: Daily Calorie Intake Planning
 		btnCalorieIntake = new JButton("Calorie Intake Calculator");
 		btnCalorieIntake.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
+				click_CalorieIntake();
 			}
 		});
 		btnCalorieIntake.setBounds(135, 195, 200, 50);
@@ -64,7 +70,9 @@ public class MainGUI extends JFrame {
 		// Func4: Daily Weight Record
 		btnWeightRecord = new JButton("Weight Record");
 		btnWeightRecord.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
+				click_WeightRecord();
 			}
 		});
 		btnWeightRecord.setBounds(135, 260, 200, 50);
@@ -73,14 +81,33 @@ public class MainGUI extends JFrame {
 		// Func5: Food Calories Calculator(Planner)
 		btnDiet = new JButton("Diet Planner");
 		btnDiet.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
+				click_Diet();
 			}
 		});
 		btnDiet.setBounds(135, 325, 200, 50);
 		getContentPane().add(btnDiet);
-		
-		
-		
 
+	}
+	
+	public void click_IdealWeight() {
+		
+	}
+	
+	public void click_BMR() {
+			
+	}
+	
+	public void click_CalorieIntake() {
+		
+	}
+	
+	public void click_WeightRecord() {
+		
+	}
+	
+	public void click_Diet() {
+		
 	}
 }
