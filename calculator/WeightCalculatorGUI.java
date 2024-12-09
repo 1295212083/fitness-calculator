@@ -117,7 +117,8 @@ public class WeightCalculatorGUI extends JFrame {
 	public void click_calculate() {
 		// TODO:
 		functionGL gl=new functionGL();
-		// int height
+		// Inputs: double height
+		// Output: String
 		//String result=gl.BMI_Calculator(height);
 	}
 }
