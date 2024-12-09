@@ -1,5 +1,5 @@
 package fitness.calculator;
-import java.util.Scanner;
+
 public class DailyCalorieIntake {
     private UserProfile userProfile;
     private String goal;
@@ -50,16 +50,5 @@ public class DailyCalorieIntake {
             }
         }
         return bmr * adjustmentFactor;
-    }
-    public void displayDailyIntake() {
-        System.out.println("Daily Calorie Intake: " + calculateDailyIntake() + " kcal");
-    }
-    public void editPlan(Scanner scanner) {
-        System.out.println("Choose a fitness goal (weight loss, weight gain, maintain): ");
-        this.goal = scanner.nextLine();
-        System.out.println("Specify calorie adjustment (mild, moderate, extreme): ");
-        this.intensity = scanner.nextLine();
-
-        displayDailyIntake();
     }
 }
