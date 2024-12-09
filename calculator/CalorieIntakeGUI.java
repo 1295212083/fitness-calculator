@@ -1,4 +1,5 @@
 package calculator;
+package GLP;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -183,5 +184,9 @@ public class CalorieIntakeGUI extends JFrame {
 	
 	public void click_calculate() {
 		// TODO:
+		functionGL gl=new functionGL();
+		// Inputs: double weight, double height, int age, int sex(Male=1, female=0)
+		// Output: double
+		//double result2=gl.BMR_Calculator(weight,height,age,sex);
 	}
 }
