@@ -1,4 +1,5 @@
 package calculator;
+package GLP;
 
 import java.awt.EventQueue;
 
@@ -115,5 +116,8 @@ public class WeightCalculatorGUI extends JFrame {
 	
 	public void click_calculate() {
 		// TODO:
+		functionGL gl=new functionGL();
+		// int height
+		//String result=gl.BMI_Calculator(height);
 	}
 }
