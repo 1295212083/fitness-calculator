@@ -1,31 +1,36 @@
 package fitness.calculator;
+import GLP.functionGL;
 
 public class DailyCalorieIntake {
-    private UserProfile userProfile;
+    private double weight;
+    private double height;
+    private int age;
+    private int gender;
     private String goal;
-    private String intensity;
+    private String rate;
+    private double BMR;
+    private double dailyCalorieIntake;
 
-    public DailyCalorieIntake(UserProfile userProfile, String goal, String intensity) {
-        this.userProfile = userProfile;
+    public DailyCalorieIntake(double weight, double height, int age, int gender, String goal, String rate) {
+        this.weight = weight;
+        this.height = height;
+        this.age = age;
+        this.gender = gender;
         this.goal = goal;
-        this.intensity = intensity;
+        this.rate = rate;
     }
 
-    public double calculateBMR() {
-        double bmr;
-        if (userProfile.getGender().equalsIgnoreCase("male")) {
-            bmr = 10 * userProfile.getWeight() + 6.25 * userProfile.getHeight() - 5 * userProfile.getAge() + 5;
-        } else {
-            bmr = 10 * userProfile.getWeight() + 6.25 * userProfile.getHeight() - 5 * userProfile.getAge() - 161;
-        }
-        return bmr;
+    public void calculateBMR() {
+        functionGL gl = new functionGL();
+        this.BMR = gl.BMR_Calculator(this.weight, this.height, this.age, this.gender);
     }
 
-    public double calculateDailyIntake() {
-        double bmr = calculateBMR();
+    public void calculateDailyCalorieIntake() {
+        calculateBMR();
         double adjustmentFactor = 1.0;
-        if (goal.equalsIgnoreCase("weight loss")) {
-            switch (intensity.toLowerCase()) {
+
+        if (goal.equalsIgnoreCase("Weight Loss")) {
+            switch (rate.toLowerCase()) {
                 case "mild":
                     adjustmentFactor = 0.9;
                     break;
@@ -36,8 +41,8 @@ public class DailyCalorieIntake {
                     adjustmentFactor = 0.7;
                     break;
             }
-        } else if (goal.equalsIgnoreCase("weight gain")) {
-            switch (intensity.toLowerCase()) {
+        } else if (goal.equalsIgnoreCase("Weight Gain")) {
+            switch (rate.toLowerCase()) {
                 case "mild":
                     adjustmentFactor = 1.1;
                     break;
@@ -49,6 +54,11 @@ public class DailyCalorieIntake {
                     break;
             }
         }
-        return bmr * adjustmentFactor;
+        // For maintaining weight, no adjustment needed
+        this.dailyCalorieIntake = this.BMR * adjustmentFactor;
+    }
+
+    public double getDailyCalorieIntake() {
+        return this.dailyCalorieIntake;
     }
 }
