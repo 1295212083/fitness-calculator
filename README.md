@@ -16,6 +16,8 @@ Program contains 5 main functions:
 
 `src/calculator/functions` contains the Main.java and all the relative classes implemented for business logic
 
+`food_db.csv` is a dataset built based on a [Kaggle Dataset](https://www.kaggle.com/datasets/utsavdey1410/food-nutrition-dataset) with food nutrition data that will be read in during runtime
+
 ## Credit
 - [Michael Liu](https://github.com/Michaelliu1017)
 - [Erin Shi](https://github.com/Erin-ovo)
