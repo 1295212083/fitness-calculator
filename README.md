@@ -12,7 +12,7 @@ The calculator contains 5 main functions:
 ## Project Structure 
 `src/calculator/gui` contains the program entry point `Main.java` and all the relative GUIs
 
-`src/calculator/function` contains the Main.java and all the relative classes implemented for business logic
+`src/calculator/functions` contains the Main.java and all the relative classes implemented for business logic
 
 ## Credit
 - [Michael Liu] (https://github.com/Michaelliu1017)
