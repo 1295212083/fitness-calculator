@@ -15,6 +15,6 @@ The calculator contains 5 main functions:
 `src/calculator/functions` contains the Main.java and all the relative classes implemented for business logic
 
 ## Credit
-- [Michael Liu] (https://github.com/Michaelliu1017)
-- [Erin Shi] (https://github.com/Erin-ovo)
-- [Charles Zhang] (https://github.com/bocchii-the-code)
+- [Michael Liu](https://github.com/Michaelliu1017)
+- [Erin Shi](https://github.com/Erin-ovo)
+- [Charles Zhang](https://github.com/bocchii-the-code)
