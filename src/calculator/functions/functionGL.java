@@ -40,8 +40,6 @@ public class functionGL {
 		double height_cup=height;
 		String str="";
 		
-		
-		
 		if(format_checker(1, height_cup, 1,1)) {
 			
 			this.weight=weight;
@@ -53,9 +51,6 @@ public class functionGL {
 			result=height*height/10000*BMI_ub;
 			String  str2 = String.format("%.2f",result);
 			str=str1+" ~ "+str2+" kg";
-			
-			
-			
 		}else {
 			
 			System.out.println("ERROR[2]: Illigal Format");

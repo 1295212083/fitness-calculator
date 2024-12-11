@@ -178,8 +178,6 @@ public class WeightRecordGUI extends JFrame {
     		JOptionPane.showMessageDialog(null, "Invalid input");
     	}
     	
-    	
-        
 	}
 }
 

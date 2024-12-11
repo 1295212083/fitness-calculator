@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -23,6 +24,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import calculator.functions.DailyWeightRecord;
+import calculator.functions.FoodFetcher;
 
 public class FoodCalorieGUI extends JFrame {
 
@@ -41,10 +43,12 @@ public class FoodCalorieGUI extends JFrame {
 	private JTextField textQuantity;
 	private JComboBox<String> boxSuggestion;
 	private DefaultTableModel tableModel;
-	private List<String> suggestions;
+	private List<String> nameList;
 	private double total_cal;
+	private FoodFetcher ff;
 
 	public FoodCalorieGUI() {
+		ff = new FoodFetcher();
 		total_cal = 0;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -71,17 +75,11 @@ public class FoodCalorieGUI extends JFrame {
 				SwingUtilities.invokeLater(() -> makeSuggestion());
 			}
 		});
-		textFood.setBounds(132, 23, 123, 20);
+		textFood.setBounds(132, 23, 150, 20);
 		contentPane.add(textFood);
 		textFood.setColumns(10);
 		
-		suggestions = new ArrayList<>();
-        suggestions.add("apple");
-        suggestions.add("asperagus");
-        suggestions.add("banana");
-        suggestions.add("orange");
-        suggestions.add("grape");
-        suggestions.add("watermelon");
+		nameList = ff.get_food_names();
         
 		boxSuggestion = new JComboBox<>();
 		boxSuggestion.addActionListener(new ActionListener() {
@@ -100,14 +98,14 @@ public class FoodCalorieGUI extends JFrame {
 				boxSuggestion.setVisible(false);
 			}
 		});
-		boxSuggestion.setBounds(132, 43, 123, 20);
+		boxSuggestion.setBounds(132, 43, 150, 20);
 		contentPane.add(boxSuggestion);
 		boxSuggestion.setVisible(false);
 		boxSuggestion.setEditable(false);
 		
 		
 		lblg = new JLabel("g");
-		lblg.setBounds(242, 54, 22, 14);
+		lblg.setBounds(234, 67, 22, 14);
 		contentPane.add(lblg);
 		
 		btnAdd = new JButton("Add");
@@ -117,7 +115,7 @@ public class FoodCalorieGUI extends JFrame {
 				click_add();
 			}
 		});
-		btnAdd.setBounds(292, 36, 68, 23);
+		btnAdd.setBounds(300, 42, 68, 23);
 		contentPane.add(btnAdd);
 		
 		btnDelete = new JButton("Delete");
@@ -148,21 +146,27 @@ public class FoodCalorieGUI extends JFrame {
 		contentPane.add(btnBack);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(57, 92, 343, 190);
+		scrollPane.setBounds(57, 102, 343, 190);
 		contentPane.add(scrollPane);
 		
 		String [] columnNames = {"Food", "Quantity(g)", "Calories(kcal)"};
 		tableModel = new DefaultTableModel(columnNames, 0);
-        table = new JTable(tableModel);
+        table = new JTable(tableModel) {
+        	// Disable cell editing
+        	@Override
+        	public boolean isCellEditable(int row, int column) {                
+                return false;               
+        	};
+        };
         scrollPane.setViewportView(table);
 		
 		lblQuantity = new JLabel("Quantity:");
-		lblQuantity.setBounds(72, 51, 59, 20);
+		lblQuantity.setBounds(74, 61, 59, 20);
 		contentPane.add(lblQuantity);
 		
 
 		textQuantity = new JTextField();
-		textQuantity.setBounds(132, 51, 100, 20);
+		textQuantity.setBounds(132, 61, 100, 20);
 		contentPane.add(textQuantity);
 		textQuantity.setColumns(10);
 		
@@ -183,7 +187,7 @@ public class FoodCalorieGUI extends JFrame {
 		boxSuggestion.removeAllItems();
 //		boxSuggestion.addItem("-");
 		if (input.length() > 0){
-			for (String item: suggestions) {
+			for (String item: nameList) {
 				if (item.toLowerCase().contains(input.toLowerCase())) {
 					boxSuggestion.addItem(item);
 				}
@@ -191,6 +195,9 @@ public class FoodCalorieGUI extends JFrame {
 		}
 		if (boxSuggestion.getItemCount() > 0) {
 			boxSuggestion.setVisible(true);
+			if (getMostRecentFocusOwner()!=textFood) {
+				boxSuggestion.setVisible(false);
+			}
 			boxSuggestion.setSelectedIndex(-1);
 		}else {
 			boxSuggestion.setVisible(false);
@@ -205,18 +212,63 @@ public class FoodCalorieGUI extends JFrame {
 		}
 		
 	}
+	
+	// Update total calorie in GUI
+	public void updateTotalCal() {
+		if (total_cal > 0) {
+			lblResult.setText(String.format("%.2f", total_cal));
+		}else {
+			lblResult.setText("-");
+		}
+	}
+	
 	// Always to remember update total_cal
 	public void click_add() {
-		
+		int food_id;
+		String food_name;
+		double quantity;
+		double calorie;
+		try {
+			food_name = textFood.getText();
+			food_id = nameList.indexOf(food_name);
+			if (food_id == -1) {
+				throw new ArrayIndexOutOfBoundsException();
+			}
+			quantity = Double.parseDouble(textQuantity.getText());
+			if (quantity <= 0) {
+				throw new IllegalArgumentException();
+			}
+			calorie = ff.get_calorie(food_id, quantity);
+			total_cal += calorie;
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+			model.addRow(new Object[] {food_name, quantity, String.format("%.2f",calorie)});
+			updateTotalCal();
+		}catch(ArrayIndexOutOfBoundsException e) {
+			JOptionPane.showMessageDialog(null, "Food type not found");
+		}catch(IllegalArgumentException e) {
+			JOptionPane.showMessageDialog(null, "Invalid quantity");
+		}
 	}
+	
 	public void click_delete() {
-		
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		try {
+			double calorie = Double.parseDouble((String)table.getValueAt(table.getSelectedRow(), 2));
+			model.removeRow(table.getSelectedRow());
+			total_cal -= calorie;
+			updateTotalCal();
+		}catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "Please select a valid row");
+		}
 	}
+	
 	public void click_save() {
 		
 	}
+	
 	public void click_back() {
 		Main.mainGUI.setVisible(true);
 		this.dispose();
 	}
+	
 }
