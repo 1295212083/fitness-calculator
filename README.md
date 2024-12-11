@@ -2,7 +2,9 @@
 
 This is a GUI-based project crafted for CS-470 Final Project
 
-The calculator contains 5 main functions:
+This calculator is developed with the goal of facilitating fitness needs based on body physiological features and measurements.
+
+Program contains 5 main functions:
 1. Ideal Weight Calculator
 2. Daily Basal Metabolic Rate (BMR) Calculator
 3. Daily Calorie Intake Planner
