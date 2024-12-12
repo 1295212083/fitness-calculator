@@ -1,10 +1,11 @@
 # Fitness Calculator
 
-This is a GUI-based project crafted for CS-470 Final Project
+## Project Description
+This is a GUI-based project crafted for the CS-470 Final Project
 
 This calculator is developed with the goal of facilitating fitness needs based on body physiological features and measurements.
 
-Program contains 5 main functions:
+The program contains 5 main functions:
 1. Ideal Weight Calculator
 2. Daily Basal Metabolic Rate (BMR) Calculator
 3. Daily Calorie Intake Planner
@@ -18,7 +19,11 @@ Program contains 5 main functions:
 
 `food_db.csv` is a dataset built based on a [Kaggle Dataset](https://www.kaggle.com/datasets/utsavdey1410/food-nutrition-dataset) with food nutrition data that will be read in during runtime
 
-`Sample_diet_data.csv` is a demonstration of the output format or file exported by the Diet Planner
+`sample_diet_data.csv` is a demonstration of the output format or file exported by the Diet Planner
+
+## How to run
+Follow path `src.calcualtor/gui/Main.java` to compile and run the code
+
 ## Credit
 - [Michael Liu](https://github.com/Michaelliu1017)
 - [Erin Shi](https://github.com/Erin-ovo)
