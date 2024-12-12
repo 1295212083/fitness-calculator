@@ -17,7 +17,7 @@ The program contains 5 main functions:
 
 `src/calculator/functions` contains the Main.java and all the relative classes implemented for business logic
 
-`food_db.csv` is a dataset built based on a [Kaggle Dataset](https://www.kaggle.com/datasets/utsavdey1410/food-nutrition-dataset) with food nutrition data that will be read in during runtime
+`food_db.csv` is a dataset built based on a [Kaggle Dataset](https://www.kaggle.com/datasets/utsavdey1410/food-nutrition-dataset) of food nutrition data that will be read in for users to input food items during runtime
 
 `sample_diet_data.csv` is a demonstration of the output format or file exported by the Diet Planner
 
