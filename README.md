@@ -19,7 +19,7 @@ The program contains 5 main functions:
 
 `food_db.csv` is a dataset built based on a [Kaggle Dataset](https://www.kaggle.com/datasets/utsavdey1410/food-nutrition-dataset) of food nutrition data that will be read in for users to input food items during runtime
 
-`sample_diet_data.csv` is a demonstration of the output format or file exported by the Diet Planner
+`sample_diet_data.csv` is a demonstration of the diet calorie record exported by the Diet Planner
 
 ## How to run
 Follow path `src.calcualtor/gui/Main.java` to compile and run the code
