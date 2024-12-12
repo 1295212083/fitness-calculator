@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,10 +48,13 @@ public class FoodCalorieGUI extends JFrame {
 	private List<String> nameList;
 	private double total_cal;
 	private FoodFetcher ff;
+	private String savePath;
 
 	public FoodCalorieGUI() {
 		ff = new FoodFetcher();
 		total_cal = 0;
+		savePath = "diet_data.csv";
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		contentPane = new JPanel();
@@ -263,7 +268,31 @@ public class FoodCalorieGUI extends JFrame {
 	}
 	
 	public void click_save() {
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		File file = new File(savePath);
 		
+		try {
+			if (model.getRowCount()==0) {
+				throw new IllegalArgumentException();
+			}
+			FileWriter csv = new FileWriter(file);
+			for (int i = 0; i<model.getColumnCount(); i++) {
+				csv.write(model.getColumnName(i)+",");
+			}
+			csv.write("\n");
+			
+			for (int x = 0; x<model.getRowCount(); x++) {
+				for (int y = 0; y<model.getColumnCount(); y++) {
+					csv.write(model.getValueAt(x, y)+",");
+				}
+				csv.write("\n");
+			}
+			
+			csv.close();
+			JOptionPane.showMessageDialog(null, "Data successfully saved in "+"\""+savePath+"\"");
+		}catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "Cannot export empty list");
+		}
 	}
 	
 	public void click_back() {
