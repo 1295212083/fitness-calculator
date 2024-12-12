@@ -156,11 +156,11 @@ public class FoodCalorieGUI extends JFrame {
 		
 		String [] columnNames = {"Food", "Quantity(g)", "Calories(kcal)"};
 		tableModel = new DefaultTableModel(columnNames, 0);
-        table = new JTable(tableModel) {
-        	// Disable cell editing
-        	@Override
-        	public boolean isCellEditable(int row, int column) {                
-                return false;               
+                table = new JTable(tableModel) {
+        		// Disable cell editing
+	        	@Override
+	        	public boolean isCellEditable(int row, int column) {                
+	                return false;               
         	};
         };
         scrollPane.setViewportView(table);
