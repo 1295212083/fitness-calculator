@@ -160,10 +160,10 @@ public class FoodCalorieGUI extends JFrame {
         		// Disable cell editing
 	        	@Override
 	        	public boolean isCellEditable(int row, int column) {                
-	                return false;               
+	                	return false;               
+        		};
         	};
-        };
-        scrollPane.setViewportView(table);
+        	scrollPane.setViewportView(table);
 		
 		lblQuantity = new JLabel("Quantity:");
 		lblQuantity.setBounds(74, 61, 59, 20);
